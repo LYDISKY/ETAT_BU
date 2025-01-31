@@ -8,16 +8,17 @@ class Personne(AbstractUser):
         ('ETUDIANT', 'Étudiant'),
         ('ELEVE', 'Élève'),
     ]
-    nom =  models.CharField(max_length=200 , default='')
-    prenom = models.CharField(max_length=200, default= '')
+    last_name =  models.CharField("Nom", max_length=200 , default='')
+    first_name = models.CharField("prenom", max_length=200, default= '')
+    email = models.EmailField("prenom", max_length=300, default= '')
     id_eta = models.ForeignKey('etablissements.Etablissement', on_delete=models.CASCADE, null=True, blank=True)
-    telephone = models.CharField(max_length=15, unique=True)
-    role = models.CharField(max_length=20, choices=ROLES)
-    password = models.CharField(max_length=128)
+    tel = models.CharField("Telephone", max_length=15, unique=True, default= '')
+    role = models.CharField("Role", max_length=20, choices=ROLES)
+    password = models.CharField("Mot de passe",max_length=128)
     created_at = models.DateTimeField(auto_now_add=True)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['nom', 'prenom', 'telephone']
+    REQUIRED_FIELDS = ['last_name', 'first_name', 'password']
 
     # Ajout des `related_name` pour éviter les conflits
     groups = models.ManyToManyField(

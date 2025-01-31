@@ -13,9 +13,10 @@ class Etablissement(models.Model):
     ]
 
     id = models.AutoField(primary_key=True)
-    nom = models.CharField(max_length=255)
-    adresse = models.TextField()
-    contact = models.CharField(max_length=20)
+    name = models.CharField("Nom",max_length=255, default="")
+    code = models.CharField(max_length=255, default="")
+    address = models.TextField("Adresse",max_length=300, default="")
+    contact = models.CharField(max_length=20,)
     logo = models.ImageField(upload_to='logos/', blank = True, null= True)
     type_etablissement = models.CharField(max_length=10, choices=TYPE_CHOICES, default='ecole')
     decoupage_annuel = models.CharField(max_length=10, choices=DECOUPAGE_CHOICES, default='trimestre')
