@@ -6,5 +6,4 @@ class EtablissementAdmin(admin.ModelAdmin):
     list_display = ('nom', 'type_etablissement', 'decoupage_annuel', 'adresse', 'contact')
     list_filter = ('type_etablissement', 'decoupage_annuel')
     search_fields = ('nom', 'adresse')
-    readonly_fields = ('decoupage_annuel',)
  

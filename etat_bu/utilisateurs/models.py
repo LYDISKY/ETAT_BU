@@ -8,7 +8,8 @@ class Personne(AbstractUser):
         ('ETUDIANT', 'Étudiant'),
         ('ELEVE', 'Élève'),
     ]
-
+    nom =  models.CharField(max_length=200 , default='')
+    prenom = models.CharField(max_length=200, default= '')
     id_eta = models.ForeignKey('etablissements.Etablissement', on_delete=models.CASCADE, null=True, blank=True)
     telephone = models.CharField(max_length=15, unique=True)
     role = models.CharField(max_length=20, choices=ROLES)
