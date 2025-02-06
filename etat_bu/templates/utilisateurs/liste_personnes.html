@@ -1,0 +1,45 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2>Liste des Personnes</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>Téléphone</th>
+        <th>Rôle</th>
+        <th>Établissement</th>
+        <th>Actions</th>  <!-- Nouvelle colonne pour les actions -->
+      </tr>
+    </thead>
+    <tbody>
+      {% for personne in personnes %}
+        <tr>
+          <td>{{ personne.id }}</td>
+          <td>{{ personne.last_name }}</td>
+          <td>{{ personne.first_name }}</td>
+          <td>{{ personne.email }}</td>
+          <td>{{ personne.tel }}</td>
+          <td>{{ personne.get_role_display }}</td>
+          <td>{{ personne.id_eta.name }}</td>  <!-- Affichage du nom de l'établissement -->
+          <td>
+            <a href="{% url 'details_personne' personne.id %}">Voir Détails</a> |
+            <a href="{% url 'modifier_personne' personne.id %}">Modifier</a> |
+            <a href="{% url 'supprimer_personne' personne.id %}">Supprimer</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="8">Aucune personne enregistrée.</td>  <!-- Ajustement du colspan à 8 -->
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <a href="{% url 'ajouter_professeur' %}">Ajouter un Professeur</a> |
+  <a href="{% url 'ajouter_etudiant' %}">Ajouter un Étudiant</a> |
+  <a href="{% url 'ajouter_secretaire' %}">Ajouter une Secrétaire</a>
+{% endblock %}

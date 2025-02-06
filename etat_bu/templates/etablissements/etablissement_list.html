@@ -1,0 +1,39 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2>Liste des établissements</h2>
+
+  <!-- Si aucun établissement n'est trouvé, afficher un message -->
+  {% if etablissements %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Code</th>
+          <th>Type</th>
+          <th>Découpage</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for etablissement in etablissements %}
+          <tr>
+            <td>{{ etablissement.name }}</td>
+            <td>{{ etablissement.code }}</td>
+            <td>{{ etablissement.get_type_etablissement_display }}</td>
+            <td>{{ etablissement.get_decoupage_annuel_display }}</td>
+            <td>
+              <!-- Ajouter des liens pour modifier ou supprimer l'établissement -->
+              {% comment %} <a href="{% url 'etablissements:edit_etablissement' etablissement.id %}" class="btn btn-warning">Modifier</a>
+              <a href="{% url 'etablissements:delete_etablissement' etablissement.id %}" class="btn btn-danger">Supprimer</a>  {% endcomment %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>Aucun établissement trouvé.</p>
+  {% endif %}
+  
+  <a href="{% url 'etablissements:create_etablissement' %}" class="btn btn-primary">Créer un nouvel établissement</a>
+{% endblock %}

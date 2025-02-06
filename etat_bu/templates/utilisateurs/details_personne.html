@@ -1,0 +1,9 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <h2>Détails de {{ personne.last_name }} {{ personne.first_name }}</h2>
+    <p>Email: {{ personne.email }}</p>
+    <p>Téléphone: {{ personne.tel }}</p>
+    <p>Rôle: {{ personne.role }}</p>
+    <a href="{% url 'modifier_personne' personne.id %}">Modifier cet utilisateur</a>
+{% endblock %}

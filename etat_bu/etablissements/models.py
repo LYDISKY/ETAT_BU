@@ -20,7 +20,7 @@ class Etablissement(models.Model):
     logo = models.ImageField(upload_to='logos/', blank = True, null= True)
     type_etablissement = models.CharField(max_length=10, choices=TYPE_CHOICES, default='ecole')
     decoupage_annuel = models.CharField(max_length=10, choices=DECOUPAGE_CHOICES, default='trimestre')
-
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.nom
+        return self.name
