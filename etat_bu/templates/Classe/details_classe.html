@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2>Détails de la Classe</h2>
+  <p><strong>Nom :</strong> {{ classe.name }}</p>
+  <p><strong>Code :</strong> {{ classe.code }}</p>
+  <p><strong>Effectif :</strong> {{ classe.strength }}</p>
+  <p><strong>Établissement :</strong> {{ classe.institution.name }}</p>
+  <p><strong>Enseignant :</strong> {{ classe.class_teacher }}</p>
+  <a href="{% url 'modifier_classe' classe.id %}">Modifier</a> |
+  <a href="{% url 'supprimer_classe' classe.id %}">Supprimer</a>
+{% endblock %}

@@ -4,9 +4,9 @@ from utilisateurs.models import Personne
 
 class Classe(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=100)  
-    code = models.CharField(max_length=10, unique=True)  
-    strength = models.PositiveIntegerField(default=0)  # Number of students 
+    name = models.CharField("Nom",max_length=100)  
+    code = models.CharField("Sigle",max_length=10, unique=True)  
+    strength = models.PositiveIntegerField("Effectif",default=0)  # Number of students 
     institution = models.ForeignKey('etablissements.Etablissement', on_delete=models.CASCADE, related_name="classes")
     class_teacher = models.ForeignKey('utilisateurs.Personne', on_delete=models.SET_NULL, null=True, blank=True, related_name="classes")  # Teacher of the class
 
@@ -16,7 +16,7 @@ class Classe(models.Model):
 class Matiere(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, unique=True)  
-    code = models.CharField(max_length=10, unique=True)  # Code de la matière (ex: MATH101)
+    code = models.CharField(max_length=10, unique=True)  
     coefficient = models.PositiveIntegerField(default=1)  
     institution = models.ForeignKey(Etablissement, on_delete=models.CASCADE, related_name="subjects") 
     teacher = models.ForeignKey(Personne, on_delete=models.SET_NULL, null=True, blank=True, related_name="subjects")  

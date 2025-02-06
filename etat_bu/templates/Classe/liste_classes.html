@@ -1,0 +1,40 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2>Liste des Classes</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Code</th>
+        <th>Effectif</th>
+        <th>Établissement</th>
+        <th>Enseignant</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for classe in classes %}
+        <tr>
+          <td>{{ classe.id }}</td>
+          <td>{{ classe.name }}</td>
+          <td>{{ classe.code }}</td>
+          <td>{{ classe.strength }}</td>
+          <td>{{ classe.institution.name }}</td>
+          <td>{{ classe.class_teacher }}</td>
+          <td>
+            <a href="{% url 'details_classe' classe.id %}">Voir Détails</a> |
+            <a href="{% url 'modifier_classe' classe.id %}">Modifier</a> |
+            <a href="{% url 'supprimer_classe' classe.id %}">Supprimer</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="7">Aucune classe enregistrée.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'ajouter_classe' %}">Ajouter une Classe</a>
+{% endblock %}
