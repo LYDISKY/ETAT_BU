@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2>Supprimer l'Établissement</h2>
+  <p>Êtes-vous sûr de vouloir supprimer "{{ etablissement.name }}" ?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Supprimer</button>
+  </form>
+  <a href="{% url 'detail_etablissement' etablissement.id %}">Annuler</a>
+{% endblock %}

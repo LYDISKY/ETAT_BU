@@ -14,3 +14,9 @@ class ClasseForm(forms.ModelForm):
         label='Enseignant',
         empty_label="Sélectionner un Professeur"  
     )
+
+
+class MatiereForm(forms.ModelForm):
+    class Meta:
+        model = Matiere
+        fields = ['name', 'code', 'coefficient', 'institution', 'teacher']

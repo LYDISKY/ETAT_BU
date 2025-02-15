@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2>Détails de la Matière</h2>
+  <p><strong>ID:</strong> {{ matiere.id }}</p>
+  <p><strong>Nom:</strong> {{ matiere.name }}</p>
+  <p><strong>Code:</strong> {{ matiere.code }}</p>
+  <p><strong>Coefficient:</strong> {{ matiere.coefficient }}</p>
+  <p><strong>Établissement:</strong> {{ matiere.institution.name }}</p>
+  <p><strong>Professeur:</strong> {{ matiere.teacher.first_name }} {{ matiere.teacher.last_name }}</p>
+
+  <a href="{% url 'modifier_matiere' matiere.id %}">Modifier</a> |
+  <a href="{% url 'supprimer_matiere' matiere.id %}">Supprimer</a> |
+  <a href="{% url 'matiere_list' %}">Retour à la liste</a>
+{% endblock %} 

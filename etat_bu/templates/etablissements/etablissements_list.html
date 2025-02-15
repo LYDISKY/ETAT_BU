@@ -1,0 +1,39 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2>Liste des Établissements</h2>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Type</th>
+        <th>Adresse</th>
+        <th>Contact</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for etablissement in etablissements %}
+        <tr>
+          <td>{{ etablissement.id }}</td>
+          <td>{{ etablissement.name }}</td>
+          <td>{{ etablissement.get_type_etablissement_display }}</td>
+          <td>{{ etablissement.address }}</td>
+          <td>{{ etablissement.contact }}</td>
+          <td>
+            <a href="{% url 'detail_etablissement' etablissement.id %}">Détails</a> |
+            <a href="{% url 'modifier_etablissement' etablissement.id %}">Modifier</a> |
+            <a href="{% url 'supprimer_etablissement' etablissement.id %}">Supprimer</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="6">Aucun établissement enregistré.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'create_etablissement' %}">Ajouter un Etablissement</a>
+{% endblock %}

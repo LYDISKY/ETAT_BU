@@ -1,0 +1,41 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2>Liste des Matières</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Code</th>
+        <th>Coefficient</th>
+        <th>Établissement</th>
+        <th>Professeur</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for matiere in matieres %}
+        <tr>
+          <td>{{ matiere.id }}</td>
+          <td>{{ matiere.name }}</td>
+          <td>{{ matiere.code }}</td>
+          <td>{{ matiere.coefficient }}</td>   
+          <td>{{ matiere.institution.name }}</td>
+          <td>{{ matiere.teacher.first_name }} {{ matiere.teacher.last_name }}</td>
+          <td>
+            <a href="{% url 'detail_matiere' matiere.id %}">Détails</a> |
+            <a href="{% url 'modifier_matiere' matiere.id %}">Modifier</a> |
+            <a href="{% url 'supprimer_matiere' matiere.id %}">Supprimer</a>
+          </td>
+        </tr>
+      {% empty %} 
+        <tr>
+          <td colspan="7">Aucune matière enregistrée.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'creer_matiere' %}">Ajouter une Matière</a>
+{% endblock %}
+     

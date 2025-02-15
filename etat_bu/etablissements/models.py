@@ -14,7 +14,7 @@ class Etablissement(models.Model):
 
     id = models.AutoField(primary_key=True)
     name = models.CharField("Nom",max_length=255, default="")
-    code = models.CharField(max_length=255, default="")
+    code = models.CharField("Code de l'etablissement",max_length=255, default="")
     address = models.TextField("Adresse",max_length=300, default="")
     contact = models.CharField(max_length=20,)
     logo = models.ImageField(upload_to='logos/', blank = True, null= True)

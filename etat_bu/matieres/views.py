@@ -2,6 +2,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from .forms import *
 
+
+#*********** CLASSES ************
+
+
 # Liste des classes
 def liste_classes(request):
     classes = Classe.objects.all()
@@ -42,3 +46,43 @@ def supprimer_classe(request, pk):
         classe.delete()
         return redirect('liste_classes')
     return render(request, 'classe/supprimer_classe.html', {'classe': classe})
+
+
+# ********** MATIERES ***********
+
+
+def liste_matieres(request):
+    matieres = Matiere.objects.all()
+    return render(request, 'matieres/matiere_list.html', {'matieres': matieres})
+
+def detail_matiere(request, pk):
+    matiere = get_object_or_404(Matiere, pk=pk)
+    return render(request, 'matieres/matiere_detail.html', {'matiere': matiere})
+
+def creer_matiere(request):
+    if request.method == "POST":
+        form = MatiereForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('matiere_list')
+    else:
+        form = MatiereForm()
+    return render(request, 'matieres/matiere_create.html', {'form': form})
+
+def modifier_matiere(request, pk):
+    matiere = get_object_or_404(Matiere, pk=pk)
+    if request.method == "POST":
+        form = MatiereForm(request.POST, instance=matiere)
+        if form.is_valid():
+            form.save()
+            return redirect('matiere_list')
+    else:
+        form = MatiereForm(instance=matiere)
+    return render(request, 'matieres/matiere_form.html', {'form': form})
+
+def supprimer_matiere(request, pk):
+    matiere = get_object_or_404(Matiere, pk=pk)
+    if request.method == "POST":
+        matiere.delete()
+        return redirect('matiere_list')
+    return render(request, 'matieres/matiere_confirm_delete.html', {'matiere': matiere})
